@@ -54,31 +54,30 @@ while op != 0:
                             print('---gerenciar rebanho---')
                             print('Cadastrar animal - [1]')
                             print('buscar - [2]')
-                            print('atualizar - [2]')
-                            print('remover animais - [3]')
+                            print('atualizar - [3]')
+                            print('remover animais - [4]')
                             gr = input('escolha a sua opçao: ')
                             if gr == '1':
                                 l1 = input('qual o tipo de animal - [Bovino de Leite, Caprino, Ovino, Suíno/Leitão]: ')
                                 l2 = int(input('qual a identificaçao do animal? - [brinco/número]: '))
                                 l3 = input('qual o status do animal? - [em lactação, para engorda, disponível para venda]: ')
-                                animal.append([l1, l2, l3])
+                                animal.append([l1, l2, l3, []])
                                 print('animal adcionado')
                                 continue
                             elif gr == '2':
                                 buscar = int(input('digite o numero do animal: '))
                                 for item in animal:
-                                    if buscar in item:
-                                        print(f'o animal selecionado atualmente se encontra: {item}')
-                                        continue
+                                    if item[1] == buscar:  # só o ID
+                                        print(f'o animal é: {item}')
                         
                         elif geral == '2':
                              print('----gerenciar producao e derivados----')
                              print('cadastre de produçao diaria')
                              nu = int(input('qual o numero do animal?: '))
                              for loop in animal:
-                                if nu in loop:
+                                if loop[1] == nu:
                                     print(loop)
                                     diaria = input('qual produto foi produzido: ')
                                     diaria2 = float(input('quanto produzido: '))
                                     diaria3 = input('qual a data de hoje: ')                                 
-                                    rebanho.append([diaria, diaria2, diaria3])
+                                    item[3].append([diaria, diaria2, diaria3])
