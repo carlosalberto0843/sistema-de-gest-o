@@ -37,9 +37,9 @@ while op != 0:
                     print(f'bem vindo {clientes[0][0]}')         
         for a in adm:
                 if login == a[0] and senha == a[1]:
+                    print(f'seja bem vindo {adm[0][0]}')
                     while True:
                         bv = True    
-                        print(f'seja bem vindo {adm[0][0]}')
                         print('---escolha uma opçao---')
                         print('Gerenciar Rebanho - [1]')
                         print('gerenciar producao e derivados - [2]')
@@ -61,6 +61,8 @@ while op != 0:
                                 rebanho.append(input('qual o tipo de animal - [Bovino de Leite, Caprino, Ovino, Suíno/Leitão] '))
                                 identificaçao.append(input('qual a identificaçao do animal? - [brinco/número]'))
                                 status.append(input('qual o status do animal? - [em lactação, para engorda, disponível para venda]'))
+                                lista_g.append([rebanho,identificaçao,status])
+                                print(lista_g)
                                 print('animal adcionado')
                                 continue
                             elif geral == '2':
