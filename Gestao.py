@@ -39,7 +39,7 @@ while op != 0:
                 if login == a[0] and senha == a[1]:
                     print(f'seja bem vindo {adm[0][0]}')
                     while True:
-                        bv = True    
+                        bv = True                                      
                         print('---escolha uma opçao---')
                         print('Gerenciar Rebanho - [1]')
                         print('gerenciar producao e derivados - [2]')
@@ -71,3 +71,14 @@ while op != 0:
                                     buscar == item[1]
                                     print(f'o animal selecionado atualmente se encontra: {item}')
                                     continue
+                        elif geral == '2':
+                             print('----gerenciar producao e derivados----')
+                             print('cadastre de produçao diaria')
+                             nu = int(input('qual o numero do animal?: '))
+                             for loop in animal:
+                                if nu == loop[1]:
+                                    print(loop)
+                                    diaria = input('qual produto foi produzido: ')
+                                    diaria2 = float(input('quanto produzido: '))
+                                    diaria3 = input('qual a data de hoje: ')
+                                    rebanho.append([diaria, diaria2, diaria3])
