@@ -1,5 +1,5 @@
 adm = []
-lista_g = []
+animal = []
 identificaçao =[]
 status = []
 rebanho = []
@@ -58,12 +58,16 @@ while op != 0:
                             print('remover animais - [3]')
                             gr = input('escolha a sua opçao: ')
                             if gr == '1':
-                                l1 = input('qual o tipo de animal - [Bovino de Leite, Caprino, Ovino, Suíno/Leitão] ')
-                                l2 = int(input('qual a identificaçao do animal? - [brinco/número]'))
-                                l3 = input('qual o status do animal? - [em lactação, para engorda, disponível para venda]')
-                                lista_g.append(l1, l2, l3)
-                                print(lista_g)
+                                l1 = input('qual o tipo de animal - [Bovino de Leite, Caprino, Ovino, Suíno/Leitão]: ')
+                                l2 = int(input('qual a identificaçao do animal? - [brinco/número]: '))
+                                l3 = input('qual o status do animal? - [em lactação, para engorda, disponível para venda]: ')
+                                animal.append([l1, l2, l3, rebanho])
                                 print('animal adcionado')
+                                print(animal)
                                 continue
-                            elif geral == '2':
-                                buscar = input('oque deseja buscar: ')
+                            elif gr == '2':
+                                buscar = input('digite o numero do animal: ')
+                                for item in animal:
+                                    buscar == item[1]
+                                    print(f'o animal selecionado atualmente se encontra: {item}')
+                                    continue
