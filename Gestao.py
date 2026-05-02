@@ -1,8 +1,5 @@
 adm = []
 animal = []
-identificaçao =[]
-status = []
-rebanho = []
 clientes = []
 a1 = ''
 a2 = ''
@@ -28,16 +25,16 @@ while op != 0:
         print('conta criada em adm')
     
     
-    elif op == 3: #LOGIN ADM
+    elif op == 3: #LOGIN #nao esquecer do else no final
         login = input('diga a login: ')
         senha = input('diga a senha: ')
         bv = False
         for a in clientes:
                 if login == a[0] and senha == a[1]:
-                    print(f'bem vindo {clientes[0][0]}')         
+                    print(f'bem vindo {login}')         
         for a in adm:
                 if login == a[0] and senha == a[1]:
-                    print(f'seja bem vindo {adm[0][0]}')
+                    print(f'seja bem vindo {login}') #nao esquecer do else no final
                     while True:
                         bv = True                                      
                         print('---escolha uma opçao---')
@@ -68,8 +65,7 @@ while op != 0:
                                 buscar = int(input('digite o numero do animal: '))
                                 for item in animal:
                                     if item[1] == buscar:  # só o ID
-                                        print(f'o animal é: {item}')
-                        
+                                        print(f'o animal é: {item}')                     
                         elif geral == '2':
                              print('----gerenciar producao e derivados----')
                              print('cadastre de produçao diaria')
@@ -80,4 +76,4 @@ while op != 0:
                                     diaria = input('qual produto foi produzido: ')
                                     diaria2 = float(input('quanto produzido: '))
                                     diaria3 = input('qual a data de hoje: ')                                 
-                                    item[3].append([diaria, diaria2, diaria3])
+                                    loop[3].append([diaria, diaria2, diaria3])
