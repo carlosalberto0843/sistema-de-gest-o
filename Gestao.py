@@ -68,44 +68,53 @@ while op != 0:
                                     if item[1] == buscar:  # só o ID
                                         print(f'o animal é: {item}')                     
                         elif geral == '2':
-                            while True:
-                                print('----gerenciar producao e derivados----')
-                                print('cadastre de produçao diaria - [1]')
-                                print('gerenciar estoque - [2]')
-                                print('voltar - [3]')
-                                escolha = int(input('selecione uma opcao: '))
-                                if escolha == 1:
+                            
+                            print('----gerenciar producao e derivados----')
+                            print('cadastre de produçao diaria - [1]')
+                            print('gerenciar estoque - [2]')
+                            print('voltar - [3]')
+                            escolha = int(input('selecione uma opcao: '))
+                            if escolha == 1:
+                                nu = int(input('digite o numero do animal: '))
+                                for loop in animal:
+                                    if loop[1] == nu:
+                                        print(loop)
+                                        diaria = input('qual produto foi produzido: ')
+                                        diaria2 = float(input('quanto produzido: '))
+                                        diaria3 = float(input('qual o valor para venda: '))                                 
+                                        estoque.append([ nu, diaria, diaria2, diaria3])
+                                        print(estoque)
+                                
+                            elif escolha == 2:
+                                print(f'----bem vindo {login} oque deseja fazer---- ')
+                                print('ver protutos no estoque atual - [1]')
+                                print('colocar um animal para a venda - [2]')
+                                print('remover produtos do estoque - [3]')
+                                print('voltar - [5]')
+                                escolha_estoque = int(input('digite a opcao desejada: '))
+                                if escolha_estoque == 1:
+                                        for itens in estoque:
+                                            print(itens)
+                                        print('')
+
+                                elif escolha_estoque == 2:
                                     nu = int(input('digite o numero do animal: '))
                                     for loop in animal:
                                         if loop[1] == nu:
-                                            print(loop)
-                                            diaria = input('qual produto foi produzido: ')
-                                            diaria2 = float(input('quanto produzido: '))
-                                            diaria3 = float(input('qual o valor para venda: '))                                 
-                                            estoque.append([ nu, diaria, diaria2, diaria3])
-                                            print(estoque)
+                                            v1 = input('tipo de animal: ')
+                                            v2 = float(input('peso do animal:'))
+                                            v3 = float(input('valor do animal: '))
+                                            estoque.append([nu, v1 ,v2 ,v3])
                                 
-                                elif escolha == 2:
-                                    print(f'----bem vindo {login} oque deseja fazer---- ')
-                                    print('ver protutos no estoque atual - [1]')
-                                    print('ver produdos especificos no estoque - [2]')
-                                    print('colocar um animal para a venda - [3]')
-                                    print('remover produtos do estoque - [4]')
-                                    print('voltar - [5]')
-                                    escolha_estoque = int(input('digite a opcao desejada: '))
-                                    if escolha_estoque == 1:
-                                            for itens in estoque:
-                                                print(itens)
-                                            print('')
-
-                                    elif escolha == 3:
-                                        nu = int(input('digite o numero do animal: '))
-                                        for loop in animal:
-                                            if loop[1] == nu:
-                                                v1 = input('tipo de animal: ')
-                                                v2 = float(input('peso do animal:'))
-                                                v3 = float(input('valor do animal: '))
-                                                estoque.append([nu, v1 ,v2 ,v3])
-
-                                elif escolha == 3:
-                                    break
+                                elif escolha_estoque == 3:
+                                        nu2 = int(input('digite o numero de animal: '))
+                                        achei = False
+                                        for ani in estoque:
+                                            if ani[0] == nu2:
+                                                estoque.remove(ani)
+                                                print('removido com sucesso')
+                                                achei = True
+                                                break
+                                                
+                                        if not achei:
+                                            print('produto nao encontrado')
