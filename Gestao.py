@@ -1,6 +1,7 @@
 adm = []
 clientes = []
 animal = []
+produzido_lactaçao = []
 estoque_animal = []
 estoque_produtos = []
 venda_animal = []
@@ -53,18 +54,18 @@ while op != 0:
                             print('Cadastrar animal - [1]')
                             print('buscar - [2]')
                             print('atualizar - [3]')
-                            print('remover animais - [4]')
+                            print('remover animais em lactaçao - [4]')
                             gr = input('escolha a sua opçao: ')
                             if gr == '1':
                                 l1 = input('qual o tipo de animal - [Bovino de Leite, Caprino, Ovino, Suíno/Leitão]: ')
                                 l2 = int(input('qual a identificaçao do animal? - [brinco/número]: '))
                                 l3 = input('qual o status do animal? - [lactaçao, engorda, venda]: ')
                                 if l3 == 'lactaçao' or l3 == 'engorda':
-                                    animal.append([l1, l2, l3])
+                                    animal.append([l1, l2, l3, []])
                                     print('animal adcionado')
                                     continue
                                 elif l3 == 'venda':
-                                    estoque_animal.append([l1, l2, l3])
+                                    estoque_animal.append([l1, l2, l3, []])
                                     print('animal adcionado')
                                     continue
 
@@ -111,17 +112,55 @@ while op != 0:
                                 if not trocar:
                                         print('nao atualizado, digite novamente')
 
-                        
+                            if gr == '4':
+                                print(animal)
+                                nu5 = int(input('digite o numero do animal: '))
+                                achei = False
+                                for im in animal:
+                                    if im[1] == nu5:
+                                        animal.remove(im)
+                                        print('animal removido de lactaçao')
+                                        achei = True
+                                          
                         elif geral == '2':
                             print('----gerenciar producao e derivados----')
-                            print('cadastar produçao diaria - [1]')
+                            print('gerenciar produçao diaria - [1]')
                             print('gerenciar estoque de animal  - [2]')
                             print('gerenciar estoque de produtos - [3]')
                             print('gerenciar itens para a venda - [4]')
                             print('voltar - [0]')
                             escolha = int(input('selecione uma opcao: '))
-                            
-                            if escolha == 2:
+                            if escolha == 1:
+                                print('----GERENCIAR PRODUÇAO DIARIA----')
+                                print('cadastar produçao diaria - [1]')
+                                print('ver produçao diaria de um animal - [2]')
+                                print('remover do estoque - [3]')
+                                print('por para a venda - [4]')
+                                diaria = int(input('escolha uma opçao: '))
+                                if diaria == 1:
+                                    colocar = int(input('digite o numero do animal em lactaçao:'))
+                                    ad = -1
+                                    for i in range(len(animal)):
+                                        if animal[i][1] == colocar:
+                                            print(animal[i])
+                                            ad = int(input('quantos litros de leite foi produzido por esse animal: '))
+                                            ad1 = input('data de expediçao do leite: ')
+                                            produzido_lactaçao.append([colocar, ad ,ad1])
+                                            ad = 0
+
+                                    if ad == 0:
+                                        print('produto adicionado')
+
+                                    else:
+                                        print('produto nao adicionado')
+                                elif diaria == 2:
+                                    colocar2 = int(input('digite o numero do animal: '))
+                                    for i in range(len(produzido_lactaçao)):
+                                        if produzido_lactaçao[i][0] == colocar2:
+                                            print(produzido_lactaçao)
+                                            print('')
+
+                            elif escolha == 2:
                                 print('----gerenciar estoque de animal----') #gerenciar estoque de animal
                                 print('ver animais em estoque - [1]')
                                 print('remover animais do estoque - [2]')
@@ -134,17 +173,21 @@ while op != 0:
                                     print('')
 
                                 elif escolha_animal == 3:
+                                    print(escolha_animal)
                                     nu = int(input('digite numero do animal: '))
-                                    achei = False
-                                    for ites in estoque_animal:
-                                        if ites[1] == nu:
-                                            dinheiro = float(input('adicione o valor em R$: '))
-                                            venda_animal.append([ites[0], ites[1], dinheiro])
-                                            estoque_animal.remove(ites)
-                                            print('animal adicionado com sucesso')
-                                            achei = True
-                                            break
-                                    if not achei:
+                                    dinheiro = float(input('digite o valor do animal para venda: '))
+                                    achei = -1
+                                    for ites in range(len(estoque_animal)):
+                                        if estoque_animal[ites][1] == nu:
+                                            estoque_animal[ites][3] = dinheiro
+                                            index = ites
+
+                                    if index >= 0:
+                                        venda_animal.append(estoque_animal[index])
+                                        estoque_animal.pop(index)
+                                        print('animal adicionado a venda')
+
+                                    else:
                                         print('animal nao adicionado, digite o numero novamente')
 
                             elif escolha == 3:
@@ -181,16 +224,8 @@ while op != 0:
                                         print('produto nao removido, digite novamente')
 
                                 elif escolha_protudos == 4:
-                                    venda = int(input('digite o numero do produto: '))
-                                    ad_produto = False
-                                    for pro in estoque_produtos:
-                                        if pro[0] == venda:
-                                            preco = float(input('digite o valor do produto: '))
-                                            venda_produtos.append([pro[0], pro[1], pro[2] ,pro[3], preco])
-                                            print('produdo adcionado com sucesso')
-                                    if not ad_produto:
-                                        print('produto nao adicionado')
-
+                                    print('quase pronto')
+ 
                             elif escolha == 4:
                                 print('----LISTA DE VENDAS----')
                                 print('vendas de animais - [1] ')
