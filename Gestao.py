@@ -134,7 +134,7 @@ while op != 0:
                                 print('----GERENCIAR PRODUÇAO DIARIA----')
                                 print('cadastar produçao diaria - [1]')
                                 print('ver produçao diaria de um animal - [2]')
-                                print('remover do estoque - [3]')
+                                print('remover item - [3]')
                                 print('por para a venda - [4]')
                                 diaria = int(input('escolha uma opçao: '))
                                 if diaria == 1:
@@ -157,7 +157,7 @@ while op != 0:
                                     colocar2 = int(input('digite o numero do animal: '))
                                     for i in range(len(produzido_lactaçao)):
                                         if produzido_lactaçao[i][0] == colocar2:
-                                            print(produzido_lactaçao)
+                                            print(produzido_lactaçao[i])
                                             print('')
 
                             elif escolha == 2:
@@ -208,7 +208,7 @@ while op != 0:
                                     pro2 = float(input('digite a quantidade desse produto em kg ou litros: '))
                                     pro3 = input('digite a data de hoje: ')
                                     pro4 = int(input('digite numero para a indentificaçao: '))
-                                    estoque_produtos.append([pro4, pro1, pro2 ,pro3])
+                                    estoque_produtos.append([pro4, pro1, pro2 ,pro3, []])
                                 
                                 elif escolha_protudos == 3:
                                     print(estoque_produtos)
@@ -216,7 +216,7 @@ while op != 0:
                                     remove =  False
                                     for remover in estoque_produtos:
                                         if remover[0] == remo:
-                                            estoque_produtos.remove(remover)
+                                            estoque_produtos.pop(remover)
                                             print('protudo removido com sucesso')
                                             remove = True
                                             break
@@ -224,8 +224,22 @@ while op != 0:
                                         print('produto nao removido, digite novamente')
 
                                 elif escolha_protudos == 4:
-                                    print('quase pronto')
- 
+                                    colocar_venda = int(input('digite o numero do produto: '))
+                                    index = -1
+                                    for i in range(len(estoque_produtos)):
+                                        if estoque_produtos[i][0] == colocar_venda:
+                                            index = i
+                                            break
+                                    
+                                    if index >= 0:
+                                        preco = float(input('digite o valor do produto: '))
+                                        venda_produtos.append(estoque_produtos[index])
+                                        venda_produtos[index][4].append(preco)
+                                        estoque_produtos.pop(index)
+                                        print('produto inserido para venda')
+                                    else:
+                                        print('produto nao inserido')
+
                             elif escolha == 4:
                                 print('----LISTA DE VENDAS----')
                                 print('vendas de animais - [1] ')
@@ -245,10 +259,43 @@ while op != 0:
                                 elif vender == 2:
                                     print('----VENDA PRODUTOS----')   
                                     print('ver itens a venda - [1]')
-                                    print('remover itens da venda - [1]')
+                                    print('remover itens da venda - [2]')
                                     print('mudar preço de itens da venda - [3]')
                                     produto_venda = int(input('digite a opcao desejada: '))
                                     if produto_venda == 1:
                                         for f in venda_produtos:
                                             print(f)
+                                        print('') 
+                                    
+                                    elif animais_venda == 2:
+                                        for i in animais_venda:
+                                            print(i)
                                         print('')
+                                        produto_venda = int(input('digite o numero do produto: '))
+                                        index = -1
+                                        for i in range(len(venda_produtos)):
+                                            if venda_produtos[i][0] == venda_produtos:
+                                                index = i
+                                                break
+                                        if index >= 0:
+                                            venda_produtos.pop(index)
+                                            print('produto removido')
+                                        else:
+                                            print('produto nao removido')
+                                    
+                                    elif produto_venda == 3:
+                                        troca_venda = int(input('digite o numero do animal: '))
+                                        index = -1
+                                        for i in range(len(venda_produtos)):
+                                            if venda_produtos[i][0] == troca_venda:
+                                                index = i
+                                                break
+
+                                        if index >= 0:
+                                            novo_preco = float(input('digite o novo preço: '))
+                                            venda_produtos[index].pop(venda_produtos[4])
+                                            venda_produtos[index][4].append(novo_preco)
+                                            print('novo preço atualizado')
+                                        
+                                        else:
+                                            print('algo deu errado')
