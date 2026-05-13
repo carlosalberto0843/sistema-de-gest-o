@@ -209,6 +209,21 @@ while op != 0:
                                         print(itens)
                                     print('')
 
+                                elif escolha_animal == 2:
+                                    for i in estoque_animal:
+                                        print(i)
+                                    nu_ani = int(input('digite o numero do animal: '))
+                                    index = -1
+                                    for ita in range(len(estoque_animal)):
+                                        if estoque_animal[i][1] == nu_ani:
+                                            index = i
+                                            break
+                                    if index >= 0:
+                                        estoque_animal.pop(index)  
+                                        print('animal removido com sucesso')
+                                    else:
+                                        print('animal nao removido, tente novamente')       
+
                                 elif escolha_animal == 3:
                                     print(escolha_animal)
                                     nu = int(input('digite numero do animal: '))
