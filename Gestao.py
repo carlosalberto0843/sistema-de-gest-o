@@ -18,7 +18,7 @@ while op != 0:
     print('login cliente - 3')
     print('login ADM - 4')
     print('----------------------------------------------------')
-    op = (input('digite numero: '))
+    op = input('digite numero: ')
 
     if op == '1':
         nome = input('digite seu nome: ')
@@ -40,7 +40,7 @@ while op != 0:
                 if login == a[0] and senha == a[1]:
                     while True:   
                         print(f'seja bem vindo {login}')                                   
-                        print('---escolha uma opçao---')
+
                         print('----------------------------------------------------')
                         print('Gerenciar Rebanho - [1]')
                         print('gerenciar producao e derivados - [2]')
@@ -48,9 +48,9 @@ while op != 0:
                         print('----------------------------------------------------')
                         geral = input('escolha a opçao: ')
                         if geral == '0':
-                            print('--------')                        
+                            print('')                        
                             print('ate mais')
-                            print('--------')
+                            print('')
                             break
                         elif geral == '1':
                             print('---gerenciar rebanho---')
@@ -444,7 +444,11 @@ while op != 0:
                     print('-------------------------------------------------')
                     comprar = input('digite o item desejado: ')
                     if comprar == 0:
+                        print('')                        
+                        print('ate mais')
+                        print('')
                         break
+                    
                     elif comprar == '1':
                         print('--LOJA DE PRODUTOS--')
                         print('----------------------------------------------------')
