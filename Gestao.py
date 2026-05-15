@@ -8,6 +8,7 @@ estoque_produtos = []
 venda_animal = []
 venda_produtos = []
 carrinho = []
+agenda = []
 histoico = []
 op = -99
 while op != 0:
@@ -439,7 +440,7 @@ while op != 0:
                     print('-------------------------------------------------')
                     print('comprar produtos - 1')
                     print('comprar animais - 2')
-                    print('agendar retirada - 3')
+                    print('ver itens agendados - 3')
                     print('logout - 0')
                     print('-------------------------------------------------')
                     comprar = input('digite o item desejado: ')
@@ -479,12 +480,14 @@ while op != 0:
                             for i in carrinho:
                                 print(i)
                             index = -1
-                            finalizar = int(input('digite o numero do ID do produto desejado: '))
+                            finalizar = input('digite o numero do ID do produto desejado: ')
+                            agendar = input('digite a data')
                             for i in range(len(carrinho)):
                                 if carrinho[i][0] == finalizar:
                                     index = i
                             if index >= 0:
-                                histoico.append(venda_produtos(index))
+                                venda_produtos[index][5] = agendar
+                                agenda.append(venda_produtos(index))
                                 venda_produtos.pop(index)
                                 print('produto comprado com sucesso')
                             else:
@@ -510,6 +513,45 @@ while op != 0:
                             for i in histoico:
                                 print(i)
                             print()
+
+                    elif comprar == '3':
+                        print('--ITENS AGENDADOS--')
+                        print('----------------------------------------------------')
+                        print('ver itens agendados - [1]')
+                        print('colocar iten como recebido - [2]')
+                        print('ver itens ja coletados - [3]')
+                        print('sair - [0]')
+                        print('----------------------------------------------------')
+                        coletar = input('digite uma opçao: ')
+
+                        if coletar == '1':
+                            print('-NUM DE ID-  -TIPO-  -QUANTITADE-  -DATA EXP-  -VALOR R$- -DATA DE RETIRADA-')
+                            for i in agenda:
+                                print(i)
+                            print()
+
+                        elif coletar == "2":
+                            for i in agenda:
+                                print(i)
+                            print()
+                            index = -1
+                            recebe = input('digite o ID do item coletado: ')
+                            for b in range(len(agenda)):
+                                if agenda[b][0] == recebe:
+                                    index = b
+                            if index >= 0:
+                                histoico.append(index)
+                                agenda.pop(index)
+                                print('iten coletado')
+                            else:
+                                print('seu item nao foi considerado como coletado')
+
+                        elif coletar == '3':
+                            print('-NUM DE ID-  -TIPO-  -QUANTITADE-  -DATA EXP-  -VALOR R$- -DATA DE RETIRADA-')
+                            for i in histoico:
+                                print(i)
+                            print()
+
                     elif comprar == '2':
                         print('--LOJA DE ANIMAIS--')
                         print('----------------------------------------------------')
