@@ -45,6 +45,7 @@ while op != 0:
                         print('----------------------------------------------------')
                         print('Gerenciar Rebanho - [1]')
                         print('gerenciar producao e derivados - [2]')
+                        print('criar noticia ou aviso - [3]')
                         print('logout - [0]')
                         print('----------------------------------------------------')
                         geral = input('escolha a opçao: ')
@@ -53,6 +54,11 @@ while op != 0:
                             print('ate mais')
                             print('')
                             break
+
+                        elif geral == '3':
+                            print('==CRIE UMA NOTICIA OU UM AVISO PARA OS COMPRADORES==')
+                            noticia = input('digite a noticia: ')
+                        
                         elif geral == '1':
                             print('---gerenciar rebanho---')
                             print('----------------------------------------------------')
@@ -60,6 +66,7 @@ while op != 0:
                             print('buscar - [2]')
                             print('atualizar - [3]')
                             print('remover animais em lactaçao - [4]')
+                            print('remover animais em engorda - [5]')
                             print('----------------------------------------------------')
                             gr = input('escolha a sua opçao: ')
                             if gr == '1':
@@ -114,7 +121,7 @@ while op != 0:
                                         print('algo deu errado')
                                         print()    
    
-                                if mudar == 'lactacao' and atualizar == 'venda':
+                                elif mudar == 'lactacao' and atualizar == 'venda':
                                     index = -1
                                     for troca in range(len(animal_lactacao)):
                                         if animal_lactacao[troca][0] == num:
@@ -129,7 +136,7 @@ while op != 0:
                                         print('algo deu errado')
                                         print() 
 
-                                if mudar == 'venda' and atualizar == 'lactacao':
+                                elif mudar == 'venda' and atualizar == 'lactacao':
                                     index = -1
                                     for troca in range(len(estoque_animal)):
                                         if estoque_animal[troca][0] == num:
@@ -144,7 +151,7 @@ while op != 0:
                                         print('algo deu errado')
                                         print()  
 
-                                if mudar == 'venda' and atualizar == 'engorda':
+                                elif mudar == 'venda' and atualizar == 'engorda':
                                     index = -1
                                     for troca in range(len(estoque_animal)):
                                         if estoque_animal[troca][0] == num:
@@ -159,7 +166,7 @@ while op != 0:
                                         print('algo deu errado')
                                         print()   
 
-                                if mudar == 'engorda' and atualizar == 'lactacao':
+                                elif mudar == 'engorda' and atualizar == 'lactacao':
                                     index = -1
                                     for troca in range(len(animal)):
                                         if animal[troca][0] == num:
@@ -190,7 +197,10 @@ while op != 0:
                                         print()   
 
 
-                            if gr == '4':
+                            elif gr == '4':
+                                for i in animal_lactacao:
+                                    print(i)
+                                print()
                                 nu5 = input('digite o numero do animal: ')
                                 index = -1
                                 for im in range(len(animal_lactacao)):                                   
@@ -201,6 +211,21 @@ while op != 0:
                                     print('animal removido de lactaçao')
                                 else:
                                     print('animal nao removido')
+                                
+                            elif gr == '5':
+                                for i in animal:
+                                    print(i)
+                                print()
+                                nu5 = input('digite o numero do animal: ')
+                                index = -1
+                                for im in range(len(animal)):                                   
+                                    if im[0] == nu5:
+                                        index = im
+                                if index >= 0:
+                                    animal.pop(index)   
+                                    print('animal removido de engorda')
+                                else:
+                                    print('animal nao removido')        
                                             
 
                         elif geral == '2':
@@ -226,7 +251,7 @@ while op != 0:
                                     colocar = input('digite o numero do animal em lactaçao:')
                                     index = -1
                                     for i in range(len(animal_lactacao)):
-                                        if animal[i][0] == colocar:
+                                        if animal_lactacao[i][0] == colocar:
                                             index = i
                                     if index >= 0:        
                                         print(animal_lactacao[index])
@@ -488,8 +513,9 @@ while op != 0:
                     print('ver itens agendados - 3')
                     print('logout - 0')
                     print('-------------------------------------------------')
+                    print('NOTICIA OU AVISO DE HOJE: ', noticia.upper())
                     comprar = input('digite o item desejado: ')
-                    if comprar == 0:
+                    if comprar == '0':
                         print('')                        
                         print('ate mais')
                         print('')
@@ -647,9 +673,14 @@ while op != 0:
                                 print('item removido do carrinho com sucesso')
                             else:
                                 print('algo deu errado, item nao removido')
-                            
+                        else:
+                            print('numero invalido, digite novamente')        
+                    else:
+                        print('numero invalido, digite novamente')        
+                                    
             else:
-                print('senha ou login errado, tente novamente')        
+                print('senha ou login errado, tente novamente')
+                        
 
     else:
         print('numero invalido, digite novamente')
