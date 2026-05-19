@@ -34,7 +34,7 @@ while op != 0:
         senha2 = input('digite sua senha: ')
         adm.append([nome2 , senha2])
         print('conta criada em adm')
-    
+
     elif op == '4': #LOGIN #nao esquecer do else no final
 
         login = input('digite o nome de usuario: ')
@@ -56,7 +56,13 @@ while op != 0:
                             print('ate mais')
                             print('')
                             break
-
+                        elif geral == "4":
+                            index = -1
+                            for i in range(len(estoque_produtos)):
+                                if estoque_produtos[i][2] == 1:
+                                    print(estoque_produtos[i])
+                                print()
+            
                         elif geral == '3':
                             print('==CRIE UMA NOTICIA OU UM AVISO PARA OS COMPRADORES==')
                             noticia = input('digite a noticia: ')
@@ -77,15 +83,15 @@ while op != 0:
                                 l1 = input('digite a identificaçao do animal - [brinco/número]: ')
                                 l3 = input('digite o status do animal - [lactacao, engorda, venda]: ')
                                 if l3 == 'engorda':
-                                    animal.append([l1, l2, l3, l4, []])
+                                    animal.append([l1, l2, l3, l4, '', ''])
                                     print('animal adicionado')
 
                                 elif l3 == 'lactacao':
-                                    animal_lactacao.append([l1, l2, l3, l4 , []])
+                                    animal_lactacao.append([l1, l2, l3, l4 ,'', ''])
                                     print('animal adicionado')
                                 
                                 elif l3 == 'venda':
-                                    estoque_animal.append([l1, l2, l3, l4, []])
+                                    estoque_animal.append([l1, l2, l3, l4, '', ''])
                                     print('animal adcionado')
 
                             elif gr == '2':
@@ -101,7 +107,9 @@ while op != 0:
 
                                 elif buscar2 == 'engorda':
                                     for i in animal:
-                                        print(i)        
+                                        print(i)
+                                else:
+                                    print('algo deu errado')        
 
                             elif gr == '3': 
                                 mudar = input('o animal desejado é de lactaçao, engorda ou venda: ')
@@ -114,7 +122,7 @@ while op != 0:
                                         if animal_lactacao[troca][0] == num:
                                             index = troca
                                     if index >= 0:        
-                                        animal_lactacao[index][2] == 'engorda'
+                                        animal_lactacao[index][2] = 'engorda'
                                         animal.append(animal_lactacao[index])
                                         animal_lactacao.pop(index)
                                         print('animal atualizado')
@@ -198,7 +206,6 @@ while op != 0:
                                         print('algo deu errado')
                                         print()   
 
-
                             elif gr == '4':
                                 for i in animal_lactacao:
                                     print(i)
@@ -228,7 +235,8 @@ while op != 0:
                                     print('animal removido de engorda')
                                 else:
                                     print('animal nao removido')        
-                                            
+                            else:
+                                print('algo deu errado')                
 
                         elif geral == '2':
                             print('----gerenciar producao e derivados----')
@@ -260,7 +268,7 @@ while op != 0:
                                         ad2 = input('numero para identificaçao: ')
                                         ad = float(input('quantos litros de leite foi produzido por esse animal: '))
                                         ad1 = input('data de expediçao do leite: ')
-                                        produzido_lactaçao.append([colocar, ad2, ad ,ad1])
+                                        produzido_lactaçao.append([colocar, ad2, ad ,ad1, '' , ''])
                                         print('produto adicionado')
                                     else:
                                         print('produto nao adicionado')
@@ -304,6 +312,8 @@ while op != 0:
                                     else:
                                         print('iten nao removido')
                                         print()
+                                else:
+                                    print('algo deu errado')        
 
                             elif escolha == '2':
                                 print('----gerenciar estoque de animal----')
@@ -351,7 +361,9 @@ while op != 0:
 
                                     else:
                                         print('animal nao adicionado, digite o numero novamente')
-
+                                else:
+                                    print('algo deu errado')
+                            
                             elif escolha == '3':
                                 print('----gerenciar estoque de produtos----') #gerenciar estoque de produtos
                                 print('----------------------------------------------------')
@@ -406,7 +418,9 @@ while op != 0:
                                     else:
                                         print('produto nao inserido')
                                         print('')
-
+                                else:
+                                    print('algo deu errado')
+                            
                             elif escolha == '4':
                                 print('----LISTA DE VENDAS----')
                                 print('----------------------------------------------------')
@@ -516,7 +530,11 @@ while op != 0:
                                             print('')                                    
                                         else:
                                             print('algo deu errado')
-                                            print('')
+                                            print()
+                                    else:
+                                        print('algo deu errado')        
+                            else:
+                                print('algo deu errado')               
     elif op == '3':
         login = input('digite o nome de usuario: ')
         senha = input('digite a senha: ')
@@ -604,7 +622,9 @@ while op != 0:
                                     carrinho.pop(index)
                                     print('produto removido com sucesso')
                             else:
-                                print('algo deu errado, tente novamente')       
+                                print('algo deu errado, tente novamente') 
+                        else:
+                            print('algo deu errado')              
 
                     elif comprar == '3':
                         print('--ITENS AGENDADOS--')
@@ -653,6 +673,7 @@ while op != 0:
                         print('----------------------------------------------------')
                         loja_animal = input('digite uma opçao: ')
                         if loja_animal == '1':
+                            print('-NUM ID-  -TIPO ANI-  -STATUS-  -PESO-  -VALOR R$-')
                             for i in venda_animal:
                                 print(i)
                             print()
@@ -668,6 +689,7 @@ while op != 0:
                                 print('algo deu errado, item nao adicionado')                            
 
                         elif loja_animal == '2':
+                            print('-NUM ID-  -TIPO ANI-  -STATUS-  -PESO-  -VALOR R$-')
                             for i in carrinho_animal:
                                 print(i)
                             print()
@@ -685,6 +707,7 @@ while op != 0:
                                 print('algo deu errado, item nao adicionado')
 
                         elif loja_animal == '3':
+                            print('-NUM ID-  -TIPO ANI-  -STATUS-  -PESO-  -VALOR R$-')
                             for i in carrinho_animal:
                                 print(i)
                             print()
