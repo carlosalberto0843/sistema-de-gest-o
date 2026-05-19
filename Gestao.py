@@ -534,7 +534,10 @@ while op != 0:
                                     else:
                                         print('algo deu errado')        
                             else:
-                                print('algo deu errado')               
+                                print('algo deu errado')
+                else:
+                    print('As informações de login ou senha que você inseriu estão incorretas') 
+                    print()              
     elif op == '3':
         login = input('digite o nome de usuario: ')
         senha = input('digite a senha: ')
@@ -727,6 +730,6 @@ while op != 0:
                     else:
                         print('numero invalido, digite novamente')                                           
             else:
-                print('senha ou login errado, tente novamente')                    
+                print('As informações de login ou senha que você inseriu estão incorretas')
     else:
         print('numero invalido, digite novamente')
