@@ -1,9 +1,10 @@
-adm = []
+
+adm = dict()
 clientes = []
-animal = []
-animal_lactacao = []
-produzido_lactaçao = []
-estoque_animal = []
+animal = dict()
+animal_lactacao = dict()
+produzido_lactaçao = dict()
+estoque_animal = dict()
 estoque_produtos = []
 venda_animal = []
 venda_produtos = []
@@ -13,6 +14,7 @@ agenda = []
 histoico = []
 op = -99
 noticia = "sem noticia hoje"
+
 while op != 0:
     print('----BEM VINDO AO SISTEMA DE GESTAO AGROPECUARIA----')
     print('----------------------------------------------------')
@@ -32,15 +34,18 @@ while op != 0:
     elif op == '2':
         nome2 = input('digite seu nome: ')
         senha2 = input('digite sua senha: ')
-        adm.append([nome2 , senha2])
-        print('conta criada em adm')
+        if nome2 in adm:
+            print('nome do usuario ja existente, digite outro nome \n')
+        else:
+            adm[nome2] = senha2
+            print('conta criada em adm')
 
     elif op == '4': #LOGIN #nao esquecer do else no final
 
         login = input('digite o nome de usuario: ')
         senha = input('digite a senha: ')       
-        for a in adm:
-                if login == a[0] and senha == a[1]:
+        
+        if login in adm and adm[login] == senha:
                     while True:   
                         print(f'SEJA BEM VINDO {login.upper()}')                                   
                         print('----MENU DO ADM----')
@@ -48,6 +53,7 @@ while op != 0:
                         print('Gerenciar Rebanho - [1]')
                         print('gerenciar producao e derivados - [2]')
                         print('criar noticia ou aviso - [3]')
+                        print('listar todos os itens - [4]')
                         print('logout - [0]')
                         print('----------------------------------------------------')
                         geral = input('escolha a opçao: ')
@@ -56,13 +62,7 @@ while op != 0:
                             print('ate mais')
                             print('')
                             break
-                        elif geral == "4":
-                            index = -1
-                            for i in range(len(estoque_produtos)):
-                                if estoque_produtos[i][2] == 1:
-                                    print(estoque_produtos[i])
-                                print()
-            
+
                         elif geral == '3':
                             print('==CRIE UMA NOTICIA OU UM AVISO PARA OS COMPRADORES==')
                             noticia = input('digite a noticia: ')
@@ -83,15 +83,15 @@ while op != 0:
                                 l1 = input('digite a identificaçao do animal - [brinco/número]: ')
                                 l3 = input('digite o status do animal - [lactacao, engorda, venda]: ')
                                 if l3 == 'engorda':
-                                    animal.append([l1, l2, l3, l4, '', ''])
+                                    animal[l1] = {'brinco': l1, 'tipo': l2, 'status': l3, 'peso': l4}
                                     print('animal adicionado')
 
                                 elif l3 == 'lactacao':
-                                    animal_lactacao.append([l1, l2, l3, l4 ,'', ''])
+                                    animal_lactacao[l1] = {'brinco': l1, 'tipo': l2, 'status': l3, 'peso': l4}
                                     print('animal adicionado')
                                 
                                 elif l3 == 'venda':
-                                    estoque_animal.append([l1, l2, l3, l4, '', ''])
+                                    estoque_animal[l1] = {'brinco': l1, 'tipo': l2, 'status': l3, 'peso': l4}
                                     print('animal adcionado')
 
                             elif gr == '2':
@@ -535,7 +535,7 @@ while op != 0:
                                         print('algo deu errado')        
                             else:
                                 print('algo deu errado')
-                else:
+        else:
                     print('As informações de login ou senha que você inseriu estão incorretas') 
                     print()              
     elif op == '3':
