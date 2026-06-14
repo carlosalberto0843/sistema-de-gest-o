@@ -1,11 +1,13 @@
 from menu import *
 from rebanho import *
 from derivados import *
-from derivados import opcao1_2
 from login import *
 from loja import *
 from venda_produtos import *
 from  venda_animais import *
+from  estoque_produtos import *
+from camera import *
+from acalmar import *
 adm = dict()
 clientes = dict()
 animal = dict()
@@ -37,10 +39,8 @@ while op != 0:
                     while True:   
                         menu(login)
                         geral = input('escolha a opçao: ')
-                        if geral == '0':
-                            print('')                        
-                            print('ate mais')
-                            print('')
+                        if geral == '0':                        
+                            print('\n ate mais \n')
                             break
 
                         elif geral == '3':
@@ -54,7 +54,8 @@ while op != 0:
                             print('buscar - [2]')
                             print('atualizar - [3]')
                             print('remover animais em lactaçao - [4]')
-                            print('remover animais em engorda - [5]')
+                            print('ver animais - [5]')
+                            print('sons ambiente para o abate - [6]')
                             print('----------------------------------------------------')
                             gr = input('escolha a sua opçao: ')
                             if gr == '1':
@@ -66,7 +67,9 @@ while op != 0:
                             elif gr == '4':
                                 opcao4(animal_lactacao)
                             elif gr == '5':
-                                opcao5(animal)
+                                camera()
+                            elif gr == '6':
+                                acalmar()
                             else:
                                 print('numero invalido \n')
                
@@ -91,11 +94,11 @@ while op != 0:
                                 print('----------------------------------------------------')
                                 diaria = input('escolha uma opçao: ')
                                 if diaria == '1':
-                                   opcao1_2(animal_lactacao , produzido_lactaçao)                               
+                                   opcao1_1(animal_lactacao , produzido_lactaçao)                               
                                 elif diaria == '4':
-                                    opcao1_4(produzido_lactaçao)                                
+                                    opcao1_4(produzido_lactaçao, venda_produtos)                                
                                 elif diaria == '2':
-                                    print(produzido_lactaçao)
+                                    opcao1_2(produzido_lactaçao)
                                 elif diaria == '3':
                                     opcao1_3(produzido_lactaçao)                                
                                 else:
@@ -111,9 +114,7 @@ while op != 0:
                                 print('----------------------------------------------------')
                                 escolha_animal = input('digite a opcao desejada: ')
                                 if escolha_animal == '1':
-                                    print(estoque_animal)
-                                    print('')
-
+                                    print(estoque_animal ,'\n')
                                 elif escolha_animal == '2':
                                     print(estoque_animal)
                                     remov = input('digite o numero do animal desejado: ')
@@ -148,39 +149,13 @@ while op != 0:
                                 print('----------------------------------------------------')
                                 escolha_protudos = input('digite a opcao desejada: ')
                                 if escolha_protudos == '1':
-                                    print(estoque_produtos)
-                                    print('')
-
+                                    print(estoque_produtos, '\n')
                                 elif escolha_protudos == '2':
-                                    pro1 = input('digite o nome do produto: ')
-                                    pro2 = float(input('digite a quantidade desse produto em kg ou litros: '))
-                                    pro3 = input('digite a data de hoje: ')
-                                    pro4 = input('digite numero para a indentificaçao: ')
-                                    estoque_produtos[pro4] = { 'ID':pro4, 'NOME':pro1, 'QUANTIDADE':pro2 , 'EXP':pro3}
-                                    print('produto adicionado \n')
-                                
+                                    estoque1(estoque_produtos)
                                 elif escolha_protudos == '3':
-                                    print(estoque_produtos)
-                                    remo = input('digite o numero do produto: ')
-                                    if remo in estoque_produtos:
-                                        estoque_produtos.pop(remo)
-                                        print('produto removido com sucesso \n')
-
-                                    else:
-                                        print('produto nao removido, digite novamente')
-                                        print('')
-
+                                    estoque2(estoque_produtos)
                                 elif escolha_protudos == '4':
-                                    print(estoque_produtos)
-                                    colocar_venda = input('digite o numero do produto: ')
-                                    if colocar_venda in estoque_produtos:
-                                        preco = float(input('digite o preco: '))
-                                        estoque_produtos[colocar_venda] = {'VALOR':preco}
-                                        venda_produtos[colocar_venda] = estoque_produtos[colocar_venda]
-                                        print('produto adicionado com sucesso \n')
-                                    else:
-                                        print('produto nao inserido')
-                                        print('')
+                                    estoque3(estoque_produtos , venda_produtos)
                                 else:
                                     print('algo deu errado')
                             
@@ -227,12 +202,11 @@ while op != 0:
                             else:
                                 print('algo deu errado')
         else:
-                    print('As informações de login ou senha que você inseriu estão incorretas') 
-                    print()              
+            print('As informações de login ou senha que você inseriu estão incorretas \n') 
+             
     elif op == '3':
         login = input('digite o nome de usuario: ')
         senha = input('digite a senha: ')
-        
         if login in clientes and clientes[login] == senha:
                 while True:
                     print(f'--BEM VINDO {login.upper()}, OQUE DEJA COMPRAR HOJE--') 
